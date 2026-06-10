@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soulpuller &mdash; Music as Alchemy</title>
+<meta name="description" content="Soulpuller is a philosophical folk project by Mark Cleaver. One voice, one guitar. Wake-up calls disguised as lullabies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5;
+  --bg-warm: #f3efe9;
+  --bg-card: #ffffff;
+  --bg-deep: #2c2416;
+  --text: #2c2c2c;
+  --text-mid: #5a5550;
+  --text-light: #8a847d;
+  --accent: #b8860b;
+  --accent-soft: #d4a843;
+  --accent-glow: rgba(184,134,11,0.12);
+  --accent-ember: #c4713b;
+  --border: rgba(44,36,22,0.08);
+  --sans: 'Poppins', -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(250,248,245,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: transform 0.3s;
+}
+nav.hidden { transform: translateY(-100%); }
+.nav-inner {
+  max-width: 1000px; margin: 0 auto; padding: 0.8rem 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 500;
+  color: var(--text); text-decoration: none; letter-spacing: 0.25em; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-light); text-decoration: none; font-size: 0.8rem;
+  font-weight: 400; letter-spacing: 0.04em; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 20px; height: 1.5px; background: var(--text-mid); margin: 5px 0; transition: 0.3s; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 6rem 2rem 2rem; position: relative;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+}
+.hero h1 {
+  font-family: var(--sans); font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--text); margin-bottom: 1.5rem;
+}
+.hero-tagline {
+  font-family: var(--sans); font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-style: italic; color: var(--accent); margin-bottom: 2rem;
+}
+.hero-desc {
+  max-width: 460px; color: var(--text-mid); font-size: 0.9rem;
+  margin-bottom: 3rem; line-height: 1.9; font-weight: 300;
+}
+.listen-btn {
+  display: inline-block; padding: 0.75rem 2.8rem;
+  border: 1px solid var(--accent); color: var(--accent);
+  text-decoration: none; font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s;
+  font-family: var(--sans);
+}
+.listen-btn:hover { background: var(--accent); color: #fff; }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent-soft), transparent);
+}
+
+/* ── SECTIONS ── */
+section { max-width: 720px; margin: 0 auto; padding: 5rem 2rem; }
+section.wide { max-width: 1000px; }
+.section-label {
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.6rem; font-weight: 500;
+}
+h2 {
+  font-family: var(--sans); font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 300; margin-bottom: 1.8rem; line-height: 1.4; color: var(--text);
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-family: var(--sans); font-size: 1rem; font-weight: 500;
+  margin-bottom: 0.8rem; color: var(--text);
+}
+p { margin-bottom: 1.1rem; font-size: 0.95rem; }
+
+.divider {
+  width: 40px; height: 1px; margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
+}
+
+/* ── THE LETTER ── */
+.letter-section { background: var(--bg-warm); padding: 3.5rem 2rem 5rem; }
+.letter-section .inner { max-width: 620px; margin: 0 auto; }
+.letter {
+  font-family: var(--sans); font-size: 1.05rem; line-height: 2;
+  color: var(--text);
+}
+.letter p { margin-bottom: 1.3rem; }
+.letter .sign-off {
+  margin-top: 2rem; color: var(--accent); font-style: italic; font-size: 0.95rem;
+}
+
+/* ── THE STORY ── */
+.story-section {
+  background: var(--bg-deep); color: #e8e0d4; padding: 5rem 2rem;
+}
+.story-section .inner { max-width: 680px; margin: 0 auto; }
+.story-section .section-label { color: var(--accent-soft); }
+.story-section h2 { color: #e8e0d4; }
+.story-section p { color: #c4bdb4; font-size: 0.95rem; line-height: 1.9; }
+
+/* ── PULL QUOTES ── */
+.pull-quote {
+  text-align: center; padding: 4rem 2rem; max-width: 640px; margin: 0 auto;
+}
+.pull-quote p {
+  font-family: var(--sans); font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-style: italic; font-weight: 300; color: var(--accent); line-height: 1.8;
+}
+.pull-quote .attribution {
+  font-family: var(--sans); font-size: 0.7rem; color: var(--text-light);
+  font-style: normal; margin-top: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+}
+
+/* ── MUSIC ── */
+.song-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+.song-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden;
+}
+.song-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.song-card:hover { box-shadow: 0 4px 20px rgba(184,134,11,0.08); }
+.song-card:hover::before { opacity: 1; }
+.song-title {
+  font-family: var(--sans); font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem;
+}
+.song-desc { color: var(--text-mid); font-size: 0.85rem; margin-bottom: 1rem; }
+.song-lyric {
+  font-family: var(--sans); font-style: italic; color: var(--accent);
+  font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.7;
+}
+.song-status {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 0.5rem;
+}
+.streaming-bar {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0;
+}
+.streaming-bar a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.6rem 1.3rem; border: 1px solid var(--border);
+  color: var(--text-mid); text-decoration: none; font-size: 0.8rem;
+  font-weight: 400; letter-spacing: 0.04em; transition: all 0.3s;
+}
+.streaming-bar a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── LYRICS ── */
+.lyrics-btn {
+  background: none; border: 1px solid var(--border); color: var(--text-mid);
+  padding: 0.35rem 0.9rem; font-size: 0.75rem; cursor: pointer;
+  letter-spacing: 0.06em; transition: all 0.3s; font-family: var(--sans); font-weight: 400;
+}
+.lyrics-btn:hover { border-color: var(--accent); color: var(--accent); }
+.lyrics-grid {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(44,36,22,0.6); backdrop-filter: blur(8px);
+  z-index: 200; justify-content: center; align-items: flex-start;
+  padding: 5rem 2rem; overflow-y: auto;
+}
+.modal-overlay.active { display: flex; }
+.modal-content {
+  background: var(--bg-card); border: 1px solid var(--border);
+  max-width: 560px; width: 100%; padding: 3rem; position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+.modal-close {
+  position: absolute; top: 1rem; right: 1.5rem;
+  background: none; border: none; color: var(--text-light);
+  font-size: 1.3rem; cursor: pointer; transition: color 0.3s;
+}
+.modal-close:hover { color: var(--accent); }
+.modal-title {
+  font-family: var(--sans); font-size: 1.4rem; font-weight: 400;
+  margin-bottom: 2rem; color: var(--accent);
+}
+.lyrics-text {
+  font-family: var(--sans); font-size: 1rem; line-height: 1.9;
+  color: var(--text); white-space: pre-line;
+}
+
+/* ── INTERVIEW ── */
+.interview-item {
+  margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.interview-item:last-child { border-bottom: none; }
+.interview-q {
+  font-family: var(--sans); font-size: 0.95rem; font-weight: 500;
+  color: var(--text); margin-bottom: 0.8rem;
+}
+.interview-a { color: var(--text-mid); line-height: 1.9; font-size: 0.93rem; }
+.interview-note {
+  margin-top: 0.8rem; padding-left: 1rem;
+  border-left: 2px solid var(--accent-glow); border-left-color: var(--accent-soft);
+  color: var(--text-light); font-size: 0.85rem; font-style: italic;
+}
+.interview-hidden { display: none; }
+.interview-hidden.visible { display: block; }
+.read-more-btn {
+  display: inline-block; margin-top: 1.5rem; padding: 0.6rem 1.8rem;
+  border: 1px solid var(--accent); color: var(--accent); background: none;
+  text-decoration: none; font-size: 0.75rem; letter-spacing: 0.12em;
+  text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+  font-family: var(--sans); font-weight: 400;
+}
+.read-more-btn:hover { background: var(--accent); color: #fff; }
+
+/* ── SUBSCRIBE ── */
+.subscribe-section {
+  background: var(--bg-warm); text-align: center; padding: 5rem 2rem;
+}
+.subscribe-section h2 { margin-bottom: 0.8rem; }
+.subscribe-section p { color: var(--text-mid); max-width: 440px; margin: 0 auto 2rem; font-size: 0.9rem; }
+.subscribe-form { display: flex; gap: 0; max-width: 380px; margin: 0 auto; }
+.subscribe-form input {
+  flex: 1; padding: 0.75rem 1rem; background: var(--bg-card);
+  border: 1px solid var(--border); border-right: none; color: var(--text);
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+}
+.subscribe-form input::placeholder { color: var(--text-light); }
+.subscribe-form button {
+  padding: 0.75rem 1.3rem; background: var(--accent);
+  border: 1px solid var(--accent); color: #fff;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+}
+.subscribe-form button:hover { background: var(--accent-soft); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 3rem 2rem; color: var(--text-light); font-size: 0.75rem;
+}
+footer a { color: var(--text-mid); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+/* ── SPARKLE / TREASURE ELEMENTS ── */
+.gem {
+  display: inline-block; width: 4px; height: 4px; background: var(--accent-soft);
+  border-radius: 50%; opacity: 0.5; vertical-align: middle; margin: 0 0.3rem;
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+.ember-line {
+  width: 100%; height: 1px; margin: 3rem 0;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-soft) 20%, var(--accent) 50%, var(--accent-soft) 80%, transparent 100%);
+  opacity: 0.25;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; width: 100%; background: rgba(250,248,245,0.97);
+    padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid var(--border);
+  }
+  .hamburger { display: block; }
+  .letter { font-size: 1rem; }
+  .song-grid { grid-template-columns: 1fr; }
+  .subscribe-form { flex-direction: column; }
+  .subscribe-form input { border-right: 1px solid var(--border); border-bottom: none; }
+}
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Soulpuller</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#letter">The Letter</a></li>
+      <li><a href="#story">The Story</a></li>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#lyrics">Lyrics</a></li>
+      <li><a href="#interview">Interview</a></li>
+      <li><a href="#subscribe">Subscribe</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <h1>Soulpuller</h1>
+  <p class="hero-tagline">Wake-up calls disguised as lullabies.</p>
+  <p class="hero-desc">Philosophical folk by Mark Cleaver.<br>One voice, one guitar, no hiding.<br>Music as alchemy &mdash; turning darkness into light.</p>
+  <a href="#music" class="listen-btn">Listen</a>
+  <div class="hero-scroll"></div>
+</header>
+
+<!-- THE LETTER -->
+<div class="letter-section" id="letter">
+  <div class="inner fade-in">
+    <p style="font-style: italic; color: var(--accent); text-align: center; font-size: 0.95rem; line-height: 1.9; margin-bottom: 2rem;">
+      Love, open my ears and open my lips<br>
+      Give me a song that feels like a kiss<br>
+      And I'll share it with the world so people know<br>
+      No matter how they're feeling that they're not alone
+      <span style="display: block; font-size: 0.7rem; color: var(--text-light); font-style: normal; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.5rem;">Open My Heart</span>
+    </p>
+    <h2 style="margin-bottom: 1.2rem;">Welcome</h2>
+    <div class="letter">
+      <p>I don't know how you arrived here, but I'm glad you did.</p>
+      <p>I'm a family man, a teacher, a lover of wisdom, and a songwriter who has been carrying songs in notebooks for over twenty years. I write music as a way to fight back against the ways this world can manipulate us. I write because I see music as a stepping stone from being merely human to reaching our highest potential. I write to find the transcendental in mundane everyday life.</p>
+      <p>These songs are gifts. I don't know exactly where they come from, but I know they don't belong to me alone. I recorded them in a bedroom in one day because life won't give me more. I named this project Soulpuller because that's the job description: pulling souls toward something higher.</p>
+      <p>I want to make music that makes time seem to stop. I want to make lightbulbs turn on in people's heads. I want to nourish people's souls with wisdom. I want to make beautiful lullabies that contain vital wake-up calls buried inside.</p>
+      <p>If any of that resonates with you, stay a while. Listen. Read the lyrics. The songs are for you.</p>
+      <p class="sign-off">Only love,<br>Mark</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote fade-in">
+  <p>&ldquo;Trying to find the joy that death doesn't have the power to destroy.&rdquo;</p>
+  <div class="attribution">Gone</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- THE STORY -->
+<div class="story-section" id="story">
+  <div class="inner fade-in">
+    <p class="section-label">The Story</p>
+    <h2>How the songs got here</h2>
+    <p>Mark Cleaver was in Manhattan, looking at the sky, when the planes hit the towers. He was twenty years old, a long way from home, and the world he thought he understood broke apart in front of him. What followed were years of darkness &mdash; the kind that doesn't announce itself, that sits quietly in the background of an ordinary life until it becomes the whole picture. He lost friends to the edge he nearly went over himself.</p>
+    <p>Somewhere in the middle of all that, he started writing songs. Not because he decided to be a musician, but because the songs arrived and wouldn't leave him alone. Fragments of lyrics sat in notebooks for years, carried from London to New York to Bath to Vienna to a city in northern Spain, composting slowly until they were ready. The writing drew from everything &mdash; philosophy, spiritual practice, the wreckage of his twenties, the slow rebuilding that followed. Each song was a way of turning darkness into something that could help someone else through their own.</p>
+    <p>He recorded them all in a single day, alone in a bedroom, one voice and one guitar, because life wouldn't give him more than that. He named the project Soulpuller because that's the job description: pulling souls toward something higher. He has essentially zero audience and has won no awards. He doesn't care. He keeps writing because the songs don't belong to him and he can't die with them trapped inside.</p>
+    <div class="ember-line"></div>
+    <p style="color: var(--accent-soft); font-family: var(--sans); font-style: italic; text-align: center; font-size: 0.95rem;">&ldquo;I can't leave these songs to go to the grave with me unheard.&rdquo;</p>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<section id="music" class="wide fade-in">
+  <p class="section-label">Listen</p>
+  <h2>The Music</h2>
+  <p style="color: var(--text-mid); font-size: 0.9rem;">Three singles are live on streaming platforms, with new recordings on the way.</p>
+
+  <div class="streaming-bar">
+    <a href="https://open.spotify.com/artist/1v6NQrf8l40WWJra3py2F2" target="_blank">Spotify</a>
+    <a href="https://music.apple.com/us/artist/soulpuller/1618264914" target="_blank">Apple Music</a>
+    <a href="https://music.amazon.co.uk/artists/B09XGTR1JS/soulpuller" target="_blank">Amazon Music</a>
+    <a href="https://www.youtube.com/@Soulpullermusic" target="_blank">YouTube</a>
+    <a href="https://soulpuller.bandcamp.com" target="_blank">Bandcamp</a>
+  </div>
+
+  <div class="song-grid">
+    <div class="song-card">
+      <div class="song-title">Up With Love (Unplugged)</div>
+      <div class="song-desc">A mantra for an inner transformation &mdash; getting out of the mind and into the heart.</div>
+      <div class="song-lyric">&ldquo;I've got to set myself free from these dark satanic screens. Lose all track of time and become one with the divine.&rdquo;</div>
+      <button class="lyrics-btn" onclick="openLyrics('upwithlove')">Read lyrics</button>
+    </div>
+
+    <div class="song-card">
+      <div class="song-title">Gone (Unplugged)</div>
+      <div class="song-desc">The feeling that you've outgrown a situation and it's time to walk away &mdash; without anger, without ill will.</div>
+      <div class="song-lyric">&ldquo;How can you tie my hands and expect me to write?&rdquo;</div>
+      <button class="lyrics-btn" onclick="openLyrics('gone')">Read lyrics</button>
+    </div>
+
+    <div class="song-card">
+      <div class="song-title">Don't Stop</div>
+      <div class="song-desc">Striving to become the best you can be, finding inspiration from the amazing things around you to get there.</div>
+      <div class="song-lyric">&ldquo;I was lost, I was empty, till you found me and filled me.&rdquo;</div>
+      <button class="lyrics-btn" onclick="openLyrics('dontstop')">Read lyrics</button>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 3rem; color: var(--text-light); font-weight: 400; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;">New recordings coming soon</h3>
+  <div class="song-grid">
+    <div class="song-card" style="opacity: 0.65;">
+      <div class="song-status">Upcoming</div>
+      <div class="song-title">Back to the Infinite Soul</div>
+      <div class="song-desc">A lullaby for finding strength when the world around you is crumbling.</div>
+      <div class="song-lyric">&ldquo;I have been to the promised land. I remember the way. I go there every day. And I'm taking you with me tonight.&rdquo;</div>
+    </div>
+    <div class="song-card" style="opacity: 0.65;">
+      <div class="song-status">Upcoming</div>
+      <div class="song-title">Don't Force It</div>
+      <div class="song-lyric">&ldquo;Some people call it magic, some people call it luck. But anyone who knows what it is knows better than to label it up.&rdquo;</div>
+    </div>
+    <div class="song-card" style="opacity: 0.65;">
+      <div class="song-status">Upcoming</div>
+      <div class="song-title">Everything's Connected</div>
+      <div class="song-lyric">&ldquo;The mind is a wonderful servant but a terrible master.&rdquo;</div>
+    </div>
+    <div class="song-card" style="opacity: 0.65;">
+      <div class="song-status">Upcoming</div>
+      <div class="song-title">Open My Heart</div>
+      <div class="song-lyric">&ldquo;Give me a song that feels like a kiss, and I'll share it with the world so people know, no matter how they're feeling, that they're not alone.&rdquo;</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE 2 -->
+<div class="pull-quote fade-in">
+  <p>&ldquo;There's beauty in the way it is.&rdquo;</p>
+  <div class="attribution">Back to the Infinite Soul</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LYRICS -->
+<section id="lyrics" class="fade-in">
+  <p class="section-label">The Words</p>
+  <h2>Lyrics</h2>
+  <p style="color: var(--text-mid); font-size: 0.9rem;">The lyrics are the point. They're the reason the songs exist. Read them.</p>
+  <div class="lyrics-grid">
+    <button class="lyrics-btn" onclick="openLyrics('upwithlove')">Up With Love</button>
+    <button class="lyrics-btn" onclick="openLyrics('gone')">Gone</button>
+    <button class="lyrics-btn" onclick="openLyrics('dontstop')">Don't Stop</button>
+    <button class="lyrics-btn" onclick="openLyrics('backtotheinfinitesoul')">Back to the Infinite Soul</button>
+    <button class="lyrics-btn" onclick="openLyrics('dontforceit')">Don't Force It</button>
+    <button class="lyrics-btn" onclick="openLyrics('everythingsconnected')">Everything's Connected</button>
+    <button class="lyrics-btn" onclick="openLyrics('openmyheart')">Open My Heart</button>
+    <button class="lyrics-btn" onclick="openLyrics('rainbowgirl')">Rainbow Girl</button>
+    <button class="lyrics-btn" onclick="openLyrics('rewritetherules')">Rewrite the Rules</button>
+    <button class="lyrics-btn" onclick="openLyrics('warandpeace')">War and Peace</button>
+    <button class="lyrics-btn" onclick="openLyrics('foolsgold')">Fools' Gold</button>
+    <button class="lyrics-btn" onclick="openLyrics('fromdelusion')">From Delusion to Eternity</button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE 3 -->
+<div class="pull-quote fade-in">
+  <p>&ldquo;Silence is the where, wisdom is the how, the why is because you can, and the when is in the now.&rdquo;</p>
+  <div class="attribution">Don't Burn Out</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- THE INTERVIEW -->
+<section id="interview" class="fade-in">
+  <p class="section-label">The Interview</p>
+  <h2>100 Questions with Soulpuller</h2>
+  <p style="color: var(--text-mid); margin-bottom: 2.5rem; font-size: 0.9rem;">In March 2026, Mark sat down for a hundred-question interview about the music, the mission, and everything in between. These are the moments that mattered most.</p>
+
+  <div class="interview-item">
+    <div class="interview-q">What does success look like for Soulpuller?</div>
+    <div class="interview-a">Anonymous with lots of listeners who don't know what I look like. Everyone having the lyrics on their lips and the songs in their heads. People putting it on in dark times, going to sleep, taking downtime in a quiet room. Occasionally a lyric jumps out and turns a light on.</div>
+  </div>
+
+  <div class="interview-item">
+    <div class="interview-q">In your own words &mdash; what is Soulpuller about?</div>
+    <div class="interview-a">My music is about continuing the beautiful reciprocal human arrangement that Mr. Antolini spoke about in Catcher in the Rye. It's about being troubled by the state of the world, needing hope, answers, philosophy, wisdom, things to make life bearable. When you start to make it bearable and keep building up, eventually you can make it magical and transcendental and wonderful. It's about the journey from bearable to transcendental. It's about finding the glorious, the transcendent, the jubilation, the magic, the wonder, the joy in basic daily life.</div>
+  </div>
+
+  <div class="interview-item">
+    <div class="interview-q">The people who have the platform are wasting the platform. What do you mean?</div>
+    <div class="interview-a">Music should be this amazing, incredible, uplifting, divine experience. Everything that's missing from mainstream music &mdash; it's superficial, it's bubblegum, it's throwaway. I find it frustrating, depressing. The people who have the platform don't see what music could be. They're wasting the platform.</div>
+  </div>
+
+  <div class="interview-item">
+    <div class="interview-q">You want musicians to be more like authors. What do you mean?</div>
+    <div class="interview-a">The book stands on its own, and the author can be unknown. I don't want to stand up and take attention. I think most performers are clowns. I want to reinvent the rules so that the music speaks for itself. You don't need to know what I look like. You don't need to see me on a stage. You just need the songs.</div>
+  </div>
+
+  <div class="interview-item">
+    <div class="interview-q">You've been carrying songs in notebooks for over twenty years. How do you know when one's ready?</div>
+    <div class="interview-a">Songs evolve over years. Often a lyric or a nugget of philosophical wisdom comes to me, sits in a book for years before I come back to it and see how it fits. Usually lyrics first &mdash; beginning with an experience, a feeling, something that's happened to me. Occasionally melodies come first, or a guitar riff when I'm messing around. There's no defined approach; that's just the way the magic happens. The process is more like composting than composing. You carry the fragments and wait for the right moment.</div>
+  </div>
+
+  <div class="interview-item">
+    <div class="interview-q">You believe your songs are gifts from somewhere beyond yourself. Do you worry that sounds mad?</div>
+    <div class="interview-a">It's like meditation. When you're meditating, you're connected to a higher power. The mind is pure and clean. You go into the heart and meditate on the heart, and feel the energy there. If you can remove the ego and become one with the universal soul, the universal heart, the shared consciousness &mdash; that's what I want to come out when I'm singing. The Soulpuller will be continually bringing people in so we're joining together and raising up together, raising our vibration. I don't know exactly where the songs come from, but I know they don't belong to me alone.</div>
+  </div>
+
+  <!-- HIDDEN EXTENDED -->
+  <div class="interview-hidden" id="moreInterview">
+    <div class="interview-item">
+      <div class="interview-q">You're forty-five. Is it too late?</div>
+      <div class="interview-a">If I had been famous young, I would have died at twenty-seven, one way or another. I wouldn't have been able to cope with fame. The darkness needed processing, the philosophy needed living, the songs needed composting. Forty-five isn't late &mdash; it's ready.</div>
+      <div class="interview-note">Cohen didn't release his first album until thirty-three. Tom Waits peaked commercially in his forties and fifties. Rodriguez was in his seventies when the world found him. The music industry worships youth. Music listeners worship truth.</div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-q">You call yourself rubbish. You also believe you can channel the universal soul. How do those two people coexist?</div>
+      <div class="interview-a">It's big me and little me. We all have both sides. Calling myself rubbish first means I won't be hurt if others do. But I've also got this desire to reach the highest possible states. I want the music to be the best thing anyone's ever heard. But that's not the effect it has, so it's almost like if I can't do that, then I won't do anything.</div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-q">Your daughter was six when she quoted one of your lyrics back to you. What did she say?</div>
+      <div class="interview-a">She said, &ldquo;It's like in your song when you say the mind is a wonderful servant but a terrible master.&rdquo; She was six or seven. She applied it to her own life. That's the entire artistic mission proven in miniature &mdash; a child understood the philosophy because it was delivered inside a song she'd heard at bedtime.</div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-q">You recorded everything in one day. Why?</div>
+      <div class="interview-a">All songs recorded in one day in the bedroom of my house. Guitar very quiet in the mix, voice front and centre. I tried to get into a meditative state before recording. Life schedule, not enough time, and urgency: I don't want to die and have them trapped inside me.</div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-q">Who should never listen to Soulpuller?</div>
+      <div class="interview-a">People who are looking for numbness. People who found Leonard Cohen depressing. Soulpuller demands presence. If someone is using music as anaesthesia, this is the wrong medicine.</div>
+    </div>
+
+    <div class="interview-item">
+      <div class="interview-q">What would you say to your younger self?</div>
+      <div class="interview-a">I believe in you.</div>
+    </div>
+  </div>
+
+  <button class="read-more-btn" id="readMoreBtn" onclick="toggleInterview()">Read More</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE 4 -->
+<div class="pull-quote fade-in">
+  <p>&ldquo;How can you never give but you hope to receive?<br>How can you push me away but hope I don't leave?&rdquo;</p>
+  <div class="attribution">Gone</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SUBSCRIBE -->
+<div class="subscribe-section" id="subscribe">
+  <div class="fade-in">
+    <p class="section-label">Stay</p>
+    <h2>The Soulpuller Letter</h2>
+    <p>New songs, the stories behind them, and fragments of wisdom &mdash; delivered when they're ready, never more than you need.</p>
+    <div class="subscribe-form">
+      <input type="email" placeholder="Your email" aria-label="Email address">
+      <button type="button">Subscribe</button>
+    </div>
+    <p style="font-size: 0.7rem; color: var(--text-light); margin-top: 0.8rem;">No spam. No selling your data. Just music and words.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family: var(--sans); font-style: italic; color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem;">Music as alchemy &mdash; turning darkness into light.</p>
+  <p>&copy; 2026 Soulpuller / Mark Cleaver</p>
+  <p style="margin-top: 0.4rem;">
+    <a href="https://open.spotify.com/artist/1v6NQrf8l40WWJra3py2F2" target="_blank">Spotify</a> &middot;
+    <a href="https://music.apple.com/us/artist/soulpuller/1618264914" target="_blank">Apple Music</a> &middot;
+    <a href="https://music.amazon.co.uk/artists/B09XGTR1JS/soulpuller" target="_blank">Amazon Music</a> &middot;
+    <a href="https://www.youtube.com/@Soulpullermusic" target="_blank">YouTube</a> &middot;
+    <a href="https://soulpuller.bandcamp.com" target="_blank">Bandcamp</a> &middot;
+    <a href="https://www.instagram.com/soulpullermusic/" target="_blank">Instagram</a>
+  </p>
+</footer>
+
+<!-- LYRICS MODAL -->
+<div class="modal-overlay" id="lyricsModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeLyrics()">&times;</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="lyrics-text" id="modalLyrics"></div>
+  </div>
+</div>
+
+<script>
+const lyrics = {
+  upwithlove: {
+    title: "Up With Love",
+    text: `Pastures green
+under my feet,
+like those in ancient times.
+History
+never repeats
+Oh, but sometimes it rhymes.
+
+I went up to the mountain to find
+all that I could leave behind.
+I went down to the water to feel
+reality isn't real.
+
+So fill me up, fill me up, fill me up,
+fill me up with love, yeah, up with love,
+yeah, up with love, yeah,
+fill me up, fill me up, fill me up,
+fill me up with love.
+
+Wet concrete
+under my feet
+in these dystopian times.
+The future
+is going to be bleak
+so let's change it starting tonight.
+
+I've got to set myself free
+from these dark satanic screens.
+Lose all track of time
+and become one with the divine.
+
+So fill me up, fill me up, fill me up,
+fill me up with love, yeah, up with love,
+yeah, up with love, yeah,
+fill me up, fill me up, fill me up,
+fill me up with love.
+
+I've got to get out of my mind, gotta get into my heart.
+I've got to get out of my mind, gotta get into my heart.
+I've got to get out of my mind, gotta get into my heart.
+I've got to get out of my mind, gotta get into my heart.
+
+So fill me up, fill me up, fill me up,
+fill me up with love, yeah, up with love,
+yeah, up with love, yeah,
+fill me up, fill me up, fill me up,
+fill me up with love.`
+  },
+  gone: {
+    title: "Gone",
+    text: `How can you tie my hands and expect me to write?
+How can you clip my wings and expect me to fly?
+How can you do it again and still you don't learn?
+How can you capture a flame and hope not to burn?
+
+You've been picking all the low-hanging fruit
+Tending branches but poisoning the root
+
+How I've toiled, how I've slogged
+How I've given it all, how I've longed
+To say the power you've held over me
+Is gone
+How I've stressed, how I've strained
+Now I'm rising up from the flames
+To say the power you've held over me
+Is gone
+
+How can you poison the air and hope that I breathe?
+How can you feed me lies and hope I believe?
+How can you never give but you hope to receive?
+How can you push me away but hope I don't leave?
+
+You've been picking all the low-hanging fruit
+Tending branches but poisoning the root
+
+How I've toiled, how I've slogged
+How I've given it all, how I've longed
+To say the power you've held over me
+Is gone
+How I've stressed, how I've strained
+Now I'm rising up from the flames
+To say the power you've held over me
+Is gone
+
+Trying to find the joy
+That death doesn't have the power to destroy
+Trying to find the joy
+That death doesn't have the power to destroy
+Trying to find the joy
+That death doesn't have the power to destroy
+Trying to find the joy
+That death doesn't have the power to destroy
+
+How I've toiled, how I've slogged
+How I've given it all, how I've longed
+To say the power you've held over me
+Is gone
+How I've stressed, how I've strained
+Now I'm rising up from the flames
+To say the power you've held over me
+The power you've held over me
+The power you've held over me
+Is gone`
+  },
+  dontstop: {
+    title: "Don't Stop",
+    text: `I don't know
+But I have been told
+The sky will break open
+And the heavens will fall
+
+There's so much beauty
+It makes me cry
+Love let it be like this
+After we die
+
+What's done is done
+Don't stop
+Move it on and move up
+What's done is done
+Don't stop
+Move it on and move up
+
+This I've known
+Since I was told
+Only peace
+Can heal my soul
+
+Inner peace
+Is rippling through me
+I've opened my conscience
+And now I can see
+
+What's done is done
+Don't stop
+Move it on and move up
+What's done is done
+Don't stop
+Move it on and move up
+
+I was lost
+I was empty
+Till you found me
+And you filled me, yeah
+
+What's done is done
+Don't stop
+Move it on and move up
+What's done is done
+Don't stop
+Move it on and move up
+
+Transcend the senses,
+Transcend the senses,
+Transcend the senses,
+Meet me there
+Transcend the senses,
+Transcend the senses,
+Transcend the senses,
+Meet me there`
+  },
+  backtotheinfinitesoul: {
+    title: "Back to the Infinite Soul",
+    text: `Oh, when you lose
+Everything they say becomes true, yeah
+Let them write what they like tonight
+
+We'll hide away
+Live to fight another day
+Truth plays the long game
+
+Getting lost and getting found
+Getting up when you've been down
+Getting back to the infinite soul
+
+Oh, close your eyes
+Darling and take my hand
+I have been to the promised land.
+
+I remember the way
+I go there every day
+And I'm taking you with me tonight
+
+Getting lost and getting found
+Getting up when you've been down
+Getting back to the infinite soul
+
+Hold on, dry your tears
+There's beauty in the way it is
+There's beauty in the way it is
+There's beauty in the way it is
+
+Getting lost and getting found
+Getting up when you've been down
+Getting back to the infinite soul`
+  },
+  dontforceit: {
+    title: "Don't Force It",
+    text: `Some people call it magic
+Some people call it luck
+But anyone who knows what it is
+Knows better than to label it up
+
+I've been to the silence
+I had a vuja de
+I saw how to overcome
+The barriers in our way
+
+Don't force it
+Don't fight it
+Just feel it, feel it, feel it
+Don't force it (let it come)
+Don't fight it (let it be)
+Just feel it, feel it, feel it (and then you let it go)
+
+I don't believe in magic
+I don't believe in luck
+But I believe in the light of the world
+And I'm gonna light it up
+
+I've been to the future
+I had a déjà vu
+The material world kinda looked the same
+But the spiritual was new
+
+Don't force it
+Don't fight it
+Just feel it, feel it, feel it
+Don't force it (let it come)
+Don't fight it (let it be)
+Just feel it, feel it, feel it (and then you let it go)`
+  },
+  everythingsconnected: {
+    title: "Everything's Connected",
+    text: `I, I'm not this body
+I'm a spiritual being in a physical experience
+I, I'm not this mind
+The mind is a wonderful servant but a terrible master
+
+What am I? What is left?
+Just a precious emptiness
+Nothing independent
+Everything's Connected
+
+I, I'm not this ego
+You'll never find the divine unless you let it go
+I, I'm not these labels
+When you strip them away, there's only pure awareness
+
+What am I? What is left?
+Just a precious emptiness
+Nothing independent
+Everything's Connected
+
+I'm a drop in the ocean of the infinite soul
+Different in size but the same in kind
+
+What am I? What is left?
+Just a precious emptiness
+Nothing independent
+Everything's Connected`
+  },
+  openmyheart: {
+    title: "Open My Heart",
+    text: `Love, open my eyes and open my mind
+Until now I have been blind
+I was lost and I didn't see
+All the beauty that was surrounding me
+
+So love, open my heart and open my soul
+I give myself up to the higher control
+And if I lose my way again
+Please take me back to the time when I saw
+
+Love, come into me now
+Love, from a higher power
+Love, gotta channel it through me and into you
+Love, from a higher sense
+Love, in the silence
+Love, where I'm going there is only love
+
+Love, open my ears and open my lips
+Give me a song that feels like a kiss
+And I'll share it with the world so people know
+No matter how they're feeling that they're not alone
+
+Love, open my arms and let yourself in
+I wanna feel you under my skin, yeah
+When I feel you I am at peace
+When I'm one with you then I feel complete
+
+Love, come into me now
+Love, from a higher power
+Love, gotta channel it through me and into you
+Love, from a higher sense
+Love, in the silence
+Love, where I'm going there is only love`
+  },
+  rainbowgirl: {
+    title: "Rainbow Girl",
+    text: `Little darling, why's your head hanging low?
+Come on over, let me tell you what I know
+Sometimes you'll lose the fire inside you
+Someone will light it up again and
+Someday you and I will make it
+Somewhere over the rainbow
+
+Rainbow girl, light up the sky with your smile
+And break through the tears for a while
+You're my rainbow girl, darling
+You're my rainbow girl
+
+Little darling, when d'ya lose your way?
+Come on over, listen up to what I say
+Senses hide dimensions
+In which we are all one
+Forget what you think you know
+Journey to the infinite soul
+
+Rainbow girl, light up the sky with your smile
+And break through the tears for a while
+You're my rainbow girl, darling
+You're my rainbow girl
+
+I was once in your shoes
+And I've seen the darkness too
+So I know what to do
+Let the needle hit the groove
+
+Rainbow girl, light up the sky with your smile
+And break through the tears for a while
+You're my rainbow girl, darling
+You're my rainbow girl`
+  },
+  rewritetherules: {
+    title: "Rewrite the Rules",
+    text: `How I've longed to
+Feel the wind
+The wind of change
+On my skin
+
+And how I've longed to
+Take a hammer to
+These crumbling
+Institutions
+
+How did I let my mind
+Become the boss of me?
+How did I get so blind
+Blind to the unseen?
+
+They all say
+They're just playing the game
+Me and you
+Rewrite the rules
+
+How I've longed to
+Taste the rain
+Washing off
+My brainwashing
+
+And how I've longed to
+See the sun
+Throw light on
+This exploitation
+
+Rise up, awaken, shake off the system that keeps us down
+Rise up, awaken, shake off the system that keeps us down
+
+They all say
+They're just playing the game
+Me and you
+Rewrite the rules`
+  },
+  warandpeace: {
+    title: "War and Peace",
+    text: `There's a war on fortune, a war on fame
+War on the players and war on the game
+War on the powers that don't change a thing
+Or war on whoever is pulling their strings
+War on those who put the dove in a cage
+War on this brainwashing and war on these chains
+Surrounded by war I'm at war with myself
+War with this war and war with everyone else
+
+The fight ahead of us will never stop
+Will never stop the power inside us
+
+I choose love over fear, I choose peace over war
+The positive over what went before
+Transforming my mind and uplifting my heart
+Shining a light over a stab in the dark
+Breaking down barriers, shaking off chains
+Feeling the wonder over feeling the pain
+I choose unity over breaking apart
+Beating as one with the infinite heart
+
+The fight ahead of us will never stop
+Will never stop the power inside us`
+  },
+  foolsgold: {
+    title: "Fools' Gold",
+    text: `When you're lying on your deathbed
+Wondering what it all meant
+Don't say I didn't try to make you see sense
+
+We're here to create love
+Not to accumulate stuff
+That's why we gotta see we've all got enough
+
+Hey, life kills
+When you're living it just to pay bills
+S'all fools' gold
+I've been a fool, so I should know
+
+When you're standing by a fountain
+About to throw a coin in
+Make sure you don't choose the wrong thing
+
+Ask for awareness
+Sprinkle it with kindness
+Don't need nothing more, don't need nothing less
+
+Hey, life kills
+When you're living it just to pay bills
+S'all fools' gold
+I've been a fool, so I should know
+
+When you're going 'bout your business
+And your whole world collapses
+Let me stand by you when you're powerless
+
+Life will hurt us all
+Trip us up and watch us fall
+For all the pain, it's still so beautiful`
+  },
+  fromdelusion: {
+    title: "From Delusion to Eternity",
+    text: `I was born not ready to live
+I aint gonna die til I'm ready for death
+
+How I marvelled at the world and I marvelled at man
+And I marvelled at how this great mystery began
+But I was troubled by what we do, troubled by what we say
+Troubled by how we just throw it away
+But there were others before me who wrote what they found
+And now I'll do the same so the cycle goes round
+I sought refuge on the mountain, sought refuge at sea
+But the true rock of refuge was inside me
+
+To find myself I had to lose myself
+To save our souls we must each save our own
+
+Trapped in a web of cause and effect
+Cut loose, break free, from delusion to eternity
+
+But when my time comes and I shed this old skin
+I want to die like I'm trying to live
+With my mind like the blue sky, my heart filled with sunshine
+I'm ready to pour out all of my love
+
+To find myself I had to lose myself
+To save our souls we must each save our own`
+  }
+};
+
+function openLyrics(id) {
+  const song = lyrics[id];
+  if (!song) return;
+  document.getElementById('modalTitle').textContent = song.title;
+  document.getElementById('modalLyrics').textContent = song.text;
+  document.getElementById('lyricsModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLyrics() {
+  document.getElementById('lyricsModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('lyricsModal').addEventListener('click', function(e) {
+  if (e.target === this) closeLyrics();
+});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLyrics(); });
+
+function toggleInterview() {
+  const more = document.getElementById('moreInterview');
+  const btn = document.getElementById('readMoreBtn');
+  more.classList.toggle('visible');
+  btn.textContent = more.classList.contains('visible') ? 'Show Less' : 'Read More';
+}
+
+document.getElementById('hamburger').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+let lastScroll = 0;
+window.addEventListener('scroll', function() {
+  const current = window.pageYOffset;
+  const nav = document.getElementById('navbar');
+  if (current > lastScroll && current > 80) nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll = current;
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+</body>
+</html>
